@@ -22,6 +22,10 @@ export const router = createBrowserRouter([
         {
           path: '/booking',
           element: <BookingForm></BookingForm>
+        },
+        {
+          path: '*',
+          element: <div className="show-summary">Page Not Found</div>
         }
       ]
     }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./BookingForm.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BookingForm = () => {
   const [movieName, setMovieName] = useState("");
@@ -16,7 +18,6 @@ const BookingForm = () => {
       setMovieName(movieName);
     }
   }, []);
-  
 
   useEffect(() => {
     const ticketDetails = localStorage.getItem("ticketDetails");
@@ -50,19 +51,22 @@ const BookingForm = () => {
       quantity: quantity,
       specialRequests: specialRequests,
     };
-    console.log(formData);
     localStorage.setItem("ticketDetails", JSON.stringify(formData));
-    // Additional logic for submission
+    toast.success("Booking Confirmed!", {
+      position: toast.POSITION.TOP_RIGHT,
+      className: "booking-toast",
+    });
   };
 
   return (
     <div className="show-details booking-form">
+      <ToastContainer />
       <h1>Booking Form</h1>
       <form className="booking-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-  <label htmlFor="movieName">Movie Name: </label>
-  <input type="text" id="movieName" value={movieName} disabled />
-</div>
+        <div className="form-group">
+          <label htmlFor="movieName">Movie Name: </label>
+          <input type="text" id="movieName" value={movieName} disabled />
+        </div>
 
         <div className="form-group">
           <label htmlFor="name">Name: </label>
@@ -97,7 +101,6 @@ const BookingForm = () => {
               <option value="A1">A1</option>
               <option value="A2">A2</option>
               <option value="A3">A3</option>
-              {/* Add more seat options as needed */}
             </select>
           </div>
           <div className="form-group">
@@ -120,7 +123,7 @@ const BookingForm = () => {
             onChange={(e) => setSpecialRequests(e.target.value)}
           ></textarea>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Book</button>
       </form>
     </div>
   );

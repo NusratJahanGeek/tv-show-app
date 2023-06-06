@@ -43,14 +43,14 @@ const ShowSummary = () => {
   }
 
   const handleBookTicket = () => {
-    const movieName = name; // Use the show name as the movie name
+    const movieName = name; 
     const movieDetails = {
-      movieId: id, // Add the movie ID
+      movieId: id, 
       movieName: movieName,
     };
   
     localStorage.setItem("movieDetails", JSON.stringify(movieDetails));
-    navigate("/booking"); // Use the 'navigate' function from react-router-dom
+    navigate("/booking"); 
   };
   
 
