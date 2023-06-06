@@ -1,26 +1,18 @@
-import { useEffect, useState } from "react";
-import "./BookingForm.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from 'react';
+import './BookingForm.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookingForm = () => {
-  const [movieName, setMovieName] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [seat, setSeat] = useState("");
+  const [movieName, setMovieName] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [seat, setSeat] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [specialRequests, setSpecialRequests] = useState("");
+  const [specialRequests, setSpecialRequests] = useState('');
 
   useEffect(() => {
-    const movieDetails = localStorage.getItem("movieDetails");
-    if (movieDetails) {
-      const { movieName } = JSON.parse(movieDetails);
-      setMovieName(movieName);
-    }
-  }, []);
-
-  useEffect(() => {
-    const ticketDetails = localStorage.getItem("ticketDetails");
+    const ticketDetails = localStorage.getItem('ticketDetails');
     if (ticketDetails) {
       const {
         movieName: storedMovieName,
@@ -38,6 +30,14 @@ const BookingForm = () => {
       setSpecialRequests(storedSpecialRequests);
     }
   }, []);
+  
+  useEffect(() => {
+    const movieDetails = localStorage.getItem('movieDetails');
+    if (movieDetails) {
+      const { movieName } = JSON.parse(movieDetails);
+      setMovieName(movieName);
+    }
+  }, []);
 
   // Handle form submission
   const handleSubmit = (event) => {
@@ -51,10 +51,10 @@ const BookingForm = () => {
       quantity: quantity,
       specialRequests: specialRequests,
     };
-    localStorage.setItem("ticketDetails", JSON.stringify(formData));
-    toast.success("Booking Confirmed!", {
+    localStorage.setItem('ticketDetails', JSON.stringify(formData));
+    toast.success('Booking Confirmed!', {
       position: toast.POSITION.TOP_RIGHT,
-      className: "booking-toast",
+      className: 'booking-toast',
     });
   };
 
